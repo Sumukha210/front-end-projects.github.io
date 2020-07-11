@@ -3,10 +3,127 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tip calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h1>hello</h1>
-    <link rel="stylesheet" href="./app.js" />
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-10 mt-5 mx-auto">
+          <div class="card">
+            <div
+              class="card-header bg-primary text-light display-6 text-center text-capitalize"
+            >
+              tip calculator
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 border-right border-dark">
+                  <div class="mb-3">
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label text-capitalize"
+                      >bill</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="exampleFormControlInput1"
+                      placeholder="Enter the amount"
+                    />
+                  </div>
+                  <div class="mb-3" id="tip_div">
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label text-capitalize"
+                      >tip %</label
+                    >
+                    <div class="input-group mb-3">
+                      <button
+                        class="input-group-text btn btn-secondary font-weight-bold"
+                        data-id="dec"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="Amount (to the nearest dollar)"
+                        value="1"
+                        id="tip_input"
+                      />
+                      <button
+                        class="input-group-text btn btn-secondary font-weight-bold"
+                        data-id="inc"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mb-3" id="no_people_div">
+                    <label
+                      for="exampleFormControlInput1"
+                      class="form-label text-capitalize"
+                      >number of people</label
+                    >
+                    <div class="input-group mb-3">
+                      <button
+                        class="input-group-text btn btn-secondary font-weight-bold"
+                        data-id="dec"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="Amount (to the nearest dollar)"
+                        value="1"
+                        id="no_people_input"
+                      />
+                      <button
+                        class="input-group-text btn btn-secondary font-weight-bold"
+                        data-id="inc"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 container">
+                  <div class="row align-items-center justify-content-center">
+                    <div class="col-6 my-3">
+                      <h3 class="text-capitalize">tip</h3>
+                      <span>(per person)</span>
+                    </div>
+                    <div class="col-6">
+                      <h1 id="tip_percent" class="display-4">200</h1>
+                    </div>
+                    <div class="col-6 my-3">
+                      <h3 class="text-capitalize">total</h3>
+                      <span>(amount)</span>
+                    </div>
+                    <div class="col-6">
+                      <h1 id="tot_amount" class="display-4">39</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./app.js"></script>
   </body>
 </html>
