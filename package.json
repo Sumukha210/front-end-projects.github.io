@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run clean && parcel tip-calculator/index.html --out-dir development -p 3000",
-    "build": "parcel build tip-calculator/index.html --out-dir disttip --public-url ./",
+    "dev": "npm run clean && parcel    restaurant-website/src/index.html --out-dir development -p 3000",
+    "build": "parcel build  restaurant-website/src/index.html--out-dir public/distrestaurant --public-url ./",
     "clean": "rimraf ./development && rimraf -rf ./.cache"
   },
   "author": "sumukha",
