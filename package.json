@@ -19,7 +19,7 @@
     "babel-preset-react": "^6.24.1",
     "cssnano": "^4.1.10",
     "rimraf": "^3.0.2",
-    "sass": "^1.26.3"
+    "sass": "^1.26.10"
   },
   "babel": {
     "presets": [
@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "bootstrap": "^5.0.0-alpha1",
+    "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
