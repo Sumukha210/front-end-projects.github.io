@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run clean && parcel    restaurant-website/src/index.html --out-dir development -p 3000",
-    "build": "parcel build  restaurant-website/src/index.html--out-dir public/distrestaurant --public-url ./",
+    "dev": "npm run clean && parcel    dictionary-project/src/index.html --out-dir development -p 3000",
+    "build": "parcel build  dictionary-project/src/index.html --out-dir public/distdictionary --public-url ./",
     "clean": "rimraf ./development && rimraf -rf ./.cache"
   },
   "author": "sumukha",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@babel/runtime-corejs2": "^7.9.2",
     "babel-preset-env": "^1.7.0",
@@ -23,12 +24,19 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/transform-runtime"
+      ]
     ]
   },
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^5.0.0-alpha1",
+    "owlbot-js": "^2.0.0",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

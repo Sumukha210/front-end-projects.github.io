@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Poppins&display=swap & family=Playfair+Display");
+
+* {
+  text-transform: capitalize !important;
+}
+.spinner {
+  height: 40px;
+  width: 40px;
+  /* background: rgba(0, 0, 0, 0.4); */
+  border-radius: 50%;
+  border-top: 5px solid #1d9af2;
+  border-right: 2px solid steelblue;
+  border-bottom: none;
+  border-left: none;
+  animation: spinner5 700ms linear infinite;
+}
+
+@keyframes spinner5 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.card-header {
+  font-family: "Playfair Display", serif;
+}
+.card-body {
+  font-family: "Lora", "serif";
+}
