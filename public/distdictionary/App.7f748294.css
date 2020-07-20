@@ -1,0 +1,2 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Poppins&display=swap & family=Playfair+Display");*{text-transform:capitalize!important}.spinner{height:40px;width:40px;border-radius:50%;border:none;border-top:5px solid #1d9af2;border-right:2px solid #4682b4;animation:spinner5 .7s linear infinite}@keyframes spinner5{to{transform:rotate(1turn)}}.card-header{font-family:Playfair Display,serif}.card-body{font-family:Lora,"serif"}
+/*# sourceMappingURL=App.7f748294.css.map */
