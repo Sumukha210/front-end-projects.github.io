@@ -4,23 +4,23 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Header } from "./Header";
 import { InputGroup } from "./InputGroup";
 import Editor from "./Editor";
+import { AddNotesBtnVisibility, default_msg, MapNotes } from "./UtilFun";
 
 export default class Layout extends Component {
   state = {
-    note_title: [],
+    Notes: [],
     editor: false,
     addNoteBtn: true,
   };
 
   HandleTitleArr = (val) => {
-    this.setState(
-      () => {
-        return {
-          note_title: note_title.push(val),
-        };
-      },
-      () => console.log(this.state.note_title)
-    );
+    let Notes = this.state.Notes;
+    Notes.push(val);
+    this.setState(() => {
+      return {
+        Notes,
+      };
+    });
   };
 
   HandleBackToHome = () => {
@@ -51,26 +51,9 @@ export default class Layout extends Component {
         <Header />
         <InputGroup HandleSelect={this.HandleSelect} />
         <div id="addNoteBtnContainer">
-          {!this.state.note_title.length && (
-            <h5>
-              {this.state.note_title.length > 0
-                ? `There is ${this.state.note_title.length} notes`
-                : "there is no notes to show..."}
-            </h5>
-          )}
-          {this.state.addNoteBtn && (
-            <button
-              onClick={this.HandleAddNote}
-              className="btn-info text-capitalize mt-2 p-2 font-weight-normal"
-            >
-              add note
-            </button>
-          )}
-          <ul>
-            {this.state.note_title.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
+          {default_msg(this)}
+          {AddNotesBtnVisibility(this)}
+          {MapNotes(this)}
         </div>
         {this.state.editor && (
           <Editor
@@ -78,6 +61,7 @@ export default class Layout extends Component {
             titleArr={this.HandleTitleArr}
           />
         )}
+        {console.log(this.state.Notes)}
       </div>
     );
   }

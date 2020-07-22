@@ -8,21 +8,28 @@ export default class Editor extends Component {
   };
 
   HandleSave = () => {
-    console.log(this.state.title);
     this.setState({ saved: true, title: "", content: "" });
-    this.props.titleArr(this.state.title);
+    this.props.titleArr({
+      title: this.state.title,
+      content: this.state.content,
+    });
   };
 
-  HandleRemove = () => {
-    console.log("remove button");
+  HandleClear = () => {
+    this.setState({ saved: true, title: "", content: "" });
   };
 
   HandleBackToHome = () => {
-    this.state.saved === false && this.props.titleArr(this.state.title);
+    this.state.saved === false &&
+      this.props.titleArr({
+        title: this.state.title,
+        content: this.state.content,
+      });
     this.props.BackToHomeBtn();
   };
 
   HandleInputs = (e) => {
+    this.setState({ saved: false });
     if (e.target.name === "note_title") {
       let title = e.target.value;
       this.setState(() => {
@@ -76,11 +83,8 @@ export default class Editor extends Component {
           <button className="btn btn-outline-info" onClick={this.HandleSave}>
             Save{" "}
           </button>
-          <button
-            className="btn btn-outline-danger"
-            onClick={this.HandleRemove}
-          >
-            Remove
+          <button className="btn btn-outline-danger" onClick={this.HandleClear}>
+            Clear
           </button>
         </div>
       </div>

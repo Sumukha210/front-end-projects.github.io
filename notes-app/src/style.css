@@ -57,3 +57,6 @@ select:focus {
   align-items: center;
   justify-content: center;
 }
+.Notes {
+  background-color: teal !important;
+}
