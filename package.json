@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run clean && parcel    dictionary-project/src/index.html --out-dir development -p 3000",
-    "build": "parcel build  dictionary-project/src/index.html --out-dir public/distdictionary --public-url ./",
+    "dev": "npm run clean && parcel    notes-app/src/index.html --out-dir development -p 3000",
+    "build": "parcel build  notes-app/src/index.html --out-dir public/distnotes --public-url ./",
     "clean": "rimraf ./development && rimraf -rf ./.cache"
   },
   "author": "sumukha",
