@@ -1,93 +1,104 @@
-import React, { Component } from "react";
+import React, { useContext, useReducer, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-export default class Editor extends Component {
-  state = {
-    title: "",
-    content: "",
-    saved: false,
-  };
+import { DataContext } from "./Context/DataContext";
+import { FormReducer, ACTIONS } from "./Reducers/FormReducer";
+import Alert from "./Alert";
 
-  HandleSave = () => {
-    this.setState({ saved: true, title: "", content: "" });
-    this.props.titleArr({
-      title: this.state.title,
-      content: this.state.content,
-    });
-  };
+const Editor = ({ match }) => {
+  const [alert, setAlert] = useState(false);
+  const [state, dispatch] = useContext(DataContext);
 
-  HandleClear = () => {
-    this.setState({ saved: true, title: "", content: "" });
-  };
+  const result = state.filter((item) => item.id === match.params.id);
 
-  HandleBackToHome = () => {
-    this.state.saved === false &&
-      this.props.titleArr({
-        title: this.state.title,
-        content: this.state.content,
-      });
-    this.props.BackToHomeBtn();
-  };
+  const [stateForm, dispatchForm] = useReducer(
+    FormReducer,
+    {
+      note: "",
+      content: "",
+    },
+    () => {
+      if (match.params.id) {
+        return { note: result[0].note, content: result[0].content };
+      } else {
+        return { note: "", content: "" };
+      }
+    }
+  );
+  const { note, content } = stateForm;
 
-  HandleInputs = (e) => {
-    this.setState({ saved: false });
-    if (e.target.name === "note_title") {
-      let title = e.target.value;
-      this.setState(() => {
-        return {
-          title,
-        };
-      });
-    } else if (e.target.name === "note_text") {
-      let content = e.target.value;
-      this.setState(() => {
-        return {
-          content,
-        };
-      });
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+
+    const res = state.find((item) => item.id === match.params.id);
+
+    if (note === "" || content === "") {
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 1500);
+    } else {
+      if (res) {
+        dispatch({
+          type: "modify_items",
+          payload: { oldId: match.params.id, note, content },
+        });
+        dispatchForm({ type: ACTIONS.NOTE, payload: "" });
+        dispatchForm({ type: ACTIONS.CONTENT, payload: "" });
+      } else {
+        dispatch({
+          type: "Add_items",
+          payload: { id: uuidv4(), note, content },
+        });
+        dispatchForm({ type: ACTIONS.NOTE, payload: "" });
+        dispatchForm({ type: ACTIONS.CONTENT, payload: "" });
+      }
     }
   };
 
-  render() {
-    return (
-      <div className="container mx-auto my-5 px-3">
-        <a
-          href="#"
-          onClick={this.HandleBackToHome}
-          className="btn btn-outline-primary"
-        >
-          Back to home
-        </a>
-        <h2 className="text-center display-6 font-italic">Editor</h2>
-        <hr />
-        <form>
-          <input
-            type="text"
-            name="note_title"
-            className="form-control"
-            placeholder="Note title..."
-            onChange={this.HandleInputs}
-            value={this.state.title}
-          />
-          <textarea
-            name="note_text"
-            placeholder="enter Note content..."
-            cols="30"
-            rows="10"
-            className="form-control my-3"
-            aria-label="With textarea"
-            onChange={this.HandleInputs}
-            value={this.state.content}
-          ></textarea>
-        </form>
-        <div className="d-flex align-items-center justify-content-around">
-          <button className="btn btn-outline-info" onClick={this.HandleSave}>
-            Save{" "}
-          </button>
-          <button className="btn btn-outline-danger" onClick={this.HandleClear}>
-            Clear
-          </button>
+  return (
+    <div className="container">
+      {alert === true && <Alert />}
+      <div className="card">
+        <div className="card-header text-center display-6">Editor</div>
+        <div className="card-body">
+          <form className="" onSubmit={HandleSubmit}>
+            <input
+              type="text"
+              value={stateForm.note}
+              name="note"
+              className="form-control"
+              onChange={(e) =>
+                dispatchForm({ type: ACTIONS.NOTE, payload: e.target.value })
+              }
+            />
+            <textarea
+              name="content"
+              cols="30"
+              className="form-control my-3"
+              value={stateForm.content}
+              onChange={(e) =>
+                dispatchForm({ type: ACTIONS.CONTENT, payload: e.target.value })
+              }
+              rows="10"></textarea>
+            <div className="d-flex  align-items-center justify-content-around">
+              <button className="btn btn-info" type="submit">
+                Save
+              </button>
+              <button
+                type="reset"
+                className="btn btn-danger"
+                onClick={() => {
+                  dispatchForm({ type: "clear" });
+                }}>
+                Clear
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default Editor;

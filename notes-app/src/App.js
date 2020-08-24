@@ -1,12 +1,8 @@
+import React from "react";
 import ReactDOM from "react-dom";
-import React, { Component } from "react";
-import Entry from "./components/Entry";
-import "./style.css";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
-class App extends Component {
-  render() {
-    return <Entry />;
-  }
-}
+import Index from "./components/Index";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById("root"));
